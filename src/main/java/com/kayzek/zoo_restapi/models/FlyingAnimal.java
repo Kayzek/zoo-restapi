@@ -1,5 +1,7 @@
 package com.kayzek.zoo_restapi.models;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -10,6 +12,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class FlyingAnimal extends Animal {
+    private Double maxHeight;
     private boolean Migratory;
     
     @Enumerated(EnumType.STRING)
@@ -17,8 +20,10 @@ public class FlyingAnimal extends Animal {
 
     public FlyingAnimal() { }
 
-    public FlyingAnimal(String name, String species, Integer age, double weight, LocalDate registerDate, HealthStatus healthStatus, boolean migratory, FlyingType flyingType) {
-        super(name, species, age, weight, registerDate, healthStatus);
+    public FlyingAnimal(String name, String species, Integer age, double weight, LocalDate registerDate, 
+    HealthStatus healthStatus, Diet diet, double maxHeight, boolean migratory, FlyingType flyingType) {
+        super(name, species, age, weight, registerDate, healthStatus, diet);
+        this.maxHeight = maxHeight;
         this.Migratory = migratory;
         this.flyingType = flyingType;
     }

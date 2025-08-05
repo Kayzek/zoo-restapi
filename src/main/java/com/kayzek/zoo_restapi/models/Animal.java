@@ -2,8 +2,6 @@ package com.kayzek.zoo_restapi.models;
 
 import java.time.LocalDate;
 
-import org.springframework.cglib.core.Local;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -32,6 +30,7 @@ public abstract class Animal {
 
     @Enumerated(EnumType.STRING)
     private HealthStatus healthStatus;
+    private Diet diet;
 
     // relationships
     @ManyToOne
@@ -41,13 +40,14 @@ public abstract class Animal {
     public Animal() {
     }
 
-    public Animal(String name, String species, Integer age, double weight, LocalDate registerDate, HealthStatus healthStatus) {
+    public Animal(String name, String species, Integer age, double weight, LocalDate registerDate, HealthStatus healthStatus, Diet diet) {
         this.name = name;
         this.Species = species;
         this.age = age;
         this.weight = weight;
         this.registerDate = LocalDate.now();
-        this.healthStatus = healthStatus.NORMAL;
+        this.healthStatus = healthStatus;
+        this.diet = diet;
     }
 
 }
