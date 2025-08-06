@@ -3,8 +3,6 @@ package com.kayzek.zoo_restapi.models;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,10 +26,6 @@ public abstract class Animal {
     private double weight;
     private LocalDate registerDate;
 
-    @Enumerated(EnumType.STRING)
-    private HealthStatus healthStatus;
-    private Diet diet;
-
     // relationships
     @ManyToOne
     @JoinColumn(name = "habitat_id")
@@ -40,14 +34,12 @@ public abstract class Animal {
     public Animal() {
     }
 
-    public Animal(String name, String species, Integer age, double weight, LocalDate registerDate, HealthStatus healthStatus, Diet diet) {
+    public Animal(String name, String species, Integer age, double weight, LocalDate registerDate) {
         this.name = name;
         this.species = species;
         this.age = age;
         this.weight = weight;
         this.registerDate = LocalDate.now();
-        this.healthStatus = healthStatus;
-        this.diet = diet;
     }
 
 }

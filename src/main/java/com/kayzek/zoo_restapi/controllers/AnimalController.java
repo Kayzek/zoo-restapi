@@ -3,6 +3,7 @@ package com.kayzek.zoo_restapi.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,30 +24,39 @@ public class AnimalController {
     @Autowired
     private AnimalService animalService;
 
+    @GetMapping
+    public List<Animal> getAllAnimals() {
+        return animalService.getAllAnimals();
+    }
+    
     @GetMapping("/{id}")
     public Animal getAnimalById(@PathVariable Long id) {
         return animalService.getAnimalById(id);
     }
 
-    @PostMapping
-    public Animal createAnimal(Animal animal) {
-          return animalService.saveAnimal(animal);  
+    @PostMapping("/crear")
+    public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
+          return ResponseEntity.ok(animalService.saveAnimal(animal));  
     }
 
     @PutMapping("/{id}")
-    public Animal updateAnimal(@PathVariable Long id, @RequestBody Animal animal) {
+    public ResponseEntity<Animal> updateAnimal(@PathVariable Long id, @RequestBody Animal animal) {
+        Animal existingAnimal = animalService.getAnimalById(id);
+        if (existingAnimal == null) {
+            return ResponseEntity.notFound().build();
+        }
         animal.setId(id);
-        return animalService.saveAnimal(animal);
+        Animal updatedAnimal = animalService.saveAnimal(animal);
+        return ResponseEntity.ok(updatedAnimal);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAnimal(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteAnimal(@PathVariable Long id) {
+        if (animalService.getAnimalById(id) == null) {
+            return ResponseEntity.notFound().build();
+        }
         animalService.deleteAnimal(id);
-    }
-
-    @GetMapping("/species/{species}")
-    public List<Animal> getAnimalsBySpecies(@PathVariable String species) {
-        return animalService.getAnimalsBySpecies(species);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/volador")

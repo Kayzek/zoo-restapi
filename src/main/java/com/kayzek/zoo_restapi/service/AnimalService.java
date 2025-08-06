@@ -33,20 +33,4 @@ public class AnimalService {
     public void deleteAnimal(Long id) {
         animalRepository.deleteById(id);
     }
-    
-    public List<Animal> getAnimalsBySpecies(String species) {
-        return animalRepository.findBySpeciesContainingIgnoreCase(species);
-    }
-
-    public List<Animal> getFlyingAnimals() {
-        return animalRepository.findByFlyingAnimals();
-    }
-
-    public List<Animal> getTerrestriAnimals() {
-        return animalRepository.findByTerrestriAnimals();
-    }
-
-    public List<Animal> getActuaticAnimals() {
-        return animalRepository.findByAcuaticAnimals();
-    }
 }
