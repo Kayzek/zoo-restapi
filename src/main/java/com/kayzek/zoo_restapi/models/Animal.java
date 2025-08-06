@@ -15,7 +15,7 @@ import lombok.Data;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
-public abstract class Animal {
+public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

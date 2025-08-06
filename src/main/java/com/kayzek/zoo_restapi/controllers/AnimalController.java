@@ -58,21 +58,4 @@ public class AnimalController {
         animalService.deleteAnimal(id);
         return ResponseEntity.noContent().build();
     }
-
-    @GetMapping("/volador")
-    public List<Animal> getFlyingAnimals(){
-        return animalService.getFlyingAnimals();
-    }
-
-    @GetMapping("/terrestre")
-    public List<Animal> getTerrestrialAnimals(){
-        return animalService.getTerrestriAnimals();
-    }
-
-    @GetMapping("/acuatico")
-    public List<Animal> getAcuaticAnimals(){
-        return animalService.getActuaticAnimals();
-    }
-
-
 }
