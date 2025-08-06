@@ -10,7 +10,7 @@ import java.util.List;
 // Interfaz base de animal
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
     // metodos generales
-    List<Animal> findBySpecies(String species);
+    List<Animal> findBySpeciesContainingIgnoreCase(String species);
     List<Animal> findByHabitatId(Long id);
 
     // querys
@@ -18,6 +18,6 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
     List<Animal> findByFlyingAnimals();
     @Query("SELECT a FROM Animal a WHERE TYPE(a) = TerrestrialAnimal")
     List<Animal> findByTerrestriAnimals();
-    @Query("SELECT a FROM Animal a WHERE TYPE(a) = ActuaticAnimal")
-    List<Animal> findByActuaticAnimals();
+    @Query("SELECT a FROM Animal a WHERE TYPE(a) = AcuaticAnimal")
+    List<Animal> findByAcuaticAnimals();
 }

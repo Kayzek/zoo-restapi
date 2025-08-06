@@ -23,7 +23,7 @@ public abstract class Animal {
     private Long id;
 
     private String name;
-    private String Species;
+    private String species;
     private Integer age;
     private double weight;
     private LocalDate registerDate;
@@ -42,7 +42,7 @@ public abstract class Animal {
 
     public Animal(String name, String species, Integer age, double weight, LocalDate registerDate, HealthStatus healthStatus, Diet diet) {
         this.name = name;
-        this.Species = species;
+        this.species = species;
         this.age = age;
         this.weight = weight;
         this.registerDate = LocalDate.now();

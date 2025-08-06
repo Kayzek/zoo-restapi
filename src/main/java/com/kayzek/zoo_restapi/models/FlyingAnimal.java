@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class FlyingAnimal extends Animal {
     private Double maxHeight;
-    private boolean Migratory;
+    private boolean migratory;
     
     @Enumerated(EnumType.STRING)
     private FlyingType flyingType;
@@ -24,7 +24,7 @@ public class FlyingAnimal extends Animal {
     HealthStatus healthStatus, Diet diet, double maxHeight, boolean migratory, FlyingType flyingType) {
         super(name, species, age, weight, registerDate, healthStatus, diet);
         this.maxHeight = maxHeight;
-        this.Migratory = migratory;
+        this.migratory = migratory;
         this.flyingType = flyingType;
     }
 }
